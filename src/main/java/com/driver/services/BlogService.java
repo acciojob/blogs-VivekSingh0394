@@ -43,9 +43,9 @@ public class BlogService {
         blog.setTitle(title);
         blog.setContent(content);
         List<Blog> currentListOfBlogs = new ArrayList<>();
-        currentListOfBlogs = user.getBlogsWritten();
+        currentListOfBlogs = user.getBlogList();
         currentListOfBlogs.add(blog);
-        user.setBlogsWritten(currentListOfBlogs);
+        user.setBlogList(currentListOfBlogs);
 
 
         userRepository1.save(user);
@@ -98,7 +98,7 @@ public class BlogService {
          {
              // all blogs of each user here
 
-             List<Blog>blogList = user.getBlogsWritten();
+             List<Blog>blogList = user.getBlogList();
              for(Blog blog1:blogList)
              {
                  // now check in each user's blog this blogid and delete the blog from user
@@ -106,7 +106,7 @@ public class BlogService {
                  if(blogid==blogId)
                  {
                      blogList.remove(blog1);
-                     user.setBlogsWritten(blogList);
+                     user.setBlogList(blogList);
                      userRepository1.save(user);
                  }
 

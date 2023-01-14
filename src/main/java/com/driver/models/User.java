@@ -18,14 +18,14 @@ public class User
     private String firstName;
     private String lastname;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Blog> blogsWritten;
+    private List<Blog> blogList;
 
     public User(String username, String password, String firstName, String lastname, List<Blog> blogsWritten) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastname = lastname;
-        this.blogsWritten = blogsWritten;
+        this.blogList = blogsWritten;
     }
 
     public User() {
@@ -73,14 +73,14 @@ public class User
         this.id = id;
     }
 
-    public List<Blog> getBlogsWritten() {
+    public List<Blog> getBlogList() {
 
-        return blogsWritten;
+        return blogList;
     }
 
-    public void setBlogsWritten(List<Blog> blogsWritten) {
+    public void setBlogList(List<Blog> blogsWritten) {
 
-        this.blogsWritten = blogsWritten;
+        this.blogList = blogsWritten;
     }
 
 
