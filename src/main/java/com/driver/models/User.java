@@ -66,6 +66,10 @@ public class User
         this.lastname = lastname;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public List<Blog> getBlogsWritten() {
         return blogsWritten;
     }
@@ -76,5 +80,6 @@ public class User
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Blog> blogsWritten;
+
 
 }

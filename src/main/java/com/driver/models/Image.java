@@ -52,4 +52,8 @@ public class Image
     public void setBlog(Blog blog) {
         this.blog = blog;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
