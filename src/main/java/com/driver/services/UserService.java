@@ -17,16 +17,25 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
+        userRepository3.save(user);
     }
 
     public void deleteUser(int userId){
+        User user = userRepository3.findById(userId).get();
+       // List<Blog>blogList = user.getBlogsWritten();
+        userRepository3.delete(user);
+
+
+
     }
 
     public void updateUser(User user){
+
         userRepository3.save(user);
     }
 
     public User findUserByUsername(String username){
+
         return userRepository3.findByUsername(username);
     }
 }

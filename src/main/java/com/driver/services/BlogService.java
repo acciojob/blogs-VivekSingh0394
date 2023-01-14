@@ -26,11 +26,31 @@ public class BlogService {
 
     public List<Blog> showBlogs(){
         //find all blogs
+      List<Blog> blogList = blogRepository1.findAll();
+      return blogList;
 
     }
 
     public void createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
+
+        // this is the user
+        User user = userRepository1.findById(userId).get();
+
+        Blog blog = new Blog();
+        blog.setUser(user);
+        blog.setTitle(title);
+        blog.setContent(content);
+
+        List<Blog> currentListOfBlogs = user.getBlogsWritten();
+        currentListOfBlogs.add(blog);
+        user.setBlogsWritten(currentListOfBlogs);
+
+
+        userRepository1.save(user);
+
+
+
 
         //updating the blog details
 
@@ -40,13 +60,60 @@ public class BlogService {
 
     public Blog findBlogById(int blogId){
         //find a blog
+        Blog blog = new Blog();
+        blog= blogRepository1.findById(blogId).get();
+        return blog;
     }
 
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
+        Image image = new Image();
+        image.setDescription(description);
+        image.setDimensions(dimensions);
+
+        //get the blog and update it since 1 blog has many images
+
+        Blog blog = blogRepository1.findById(blogId).get();
+        image.setBlog(blog);
+
+        List<Image> currentListOfImages = blog.getImageList();
+        currentListOfImages.add(image);
+        blog.setImageList(currentListOfImages);
+
+
+        blogRepository1.save(blog);
     }
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
+        Blog blog = blogRepository1.findById(blogId).get();
+        //now we need to delete this blog from user and also delete images of this blog
+
+        // how to get user from blogid;
+
+         List<User>userList = userRepository1.findAll();
+        // all user here
+         for(User user:userList)
+         {
+             // all blogs of each user here
+             List<Blog>blogList = user.getBlogsWritten();
+             for(Blog blog1:blogList)
+             {
+                 // now check in each user's blog this blogid and delete the blog from user
+                 int blogid = blog1.getId();
+                 if(blogid==blogId)
+                 {
+                     blogList.remove(blog1);
+                     user.setBlogsWritten(blogList);
+                     userRepository1.save(user);
+                 }
+
+             }
+         }
+         // now delete blog
+        blogRepository1.delete(blog);
+
+
+
     }
 }
