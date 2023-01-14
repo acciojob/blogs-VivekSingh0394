@@ -1,6 +1,7 @@
 package com.driver.models;
 
 import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -16,6 +17,8 @@ public class User
     private String password;
     private String firstName;
     private String lastname;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Blog> blogsWritten;
 
     public User(String username, String password, String firstName, String lastname, List<Blog> blogsWritten) {
         this.username = username;
@@ -71,15 +74,16 @@ public class User
     }
 
     public List<Blog> getBlogsWritten() {
+
         return blogsWritten;
     }
 
     public void setBlogsWritten(List<Blog> blogsWritten) {
+
         this.blogsWritten = blogsWritten;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Blog> blogsWritten;
+
 
 
 }
