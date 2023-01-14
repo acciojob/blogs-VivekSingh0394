@@ -26,7 +26,8 @@ public class BlogService {
 
     public List<Blog> showBlogs(){
         //find all blogs
-      List<Blog> blogList = blogRepository1.findAll();
+        List<Blog> blogList = new ArrayList<>();
+      blogList = blogRepository1.findAll();
       return blogList;
 
     }
@@ -41,8 +42,8 @@ public class BlogService {
         blog.setUser(user);
         blog.setTitle(title);
         blog.setContent(content);
-
-        List<Blog> currentListOfBlogs = user.getBlogsWritten();
+        List<Blog> currentListOfBlogs = new ArrayList<>();
+        currentListOfBlogs = user.getBlogsWritten();
         currentListOfBlogs.add(blog);
         user.setBlogsWritten(currentListOfBlogs);
 
@@ -75,8 +76,8 @@ public class BlogService {
 
         Blog blog = blogRepository1.findById(blogId).get();
         image.setBlog(blog);
-
-        List<Image> currentListOfImages = blog.getImageList();
+        List<Image> currentListOfImages=new ArrayList<>();
+        currentListOfImages = blog.getImageList();
         currentListOfImages.add(image);
         blog.setImageList(currentListOfImages);
 
@@ -90,12 +91,13 @@ public class BlogService {
         //now we need to delete this blog from user and also delete images of this blog
 
         // how to get user from blogid;
-
-         List<User>userList = userRepository1.findAll();
+        List<User>userList = new ArrayList<>();
+         userList = userRepository1.findAll();
         // all user here
          for(User user:userList)
          {
              // all blogs of each user here
+
              List<Blog>blogList = user.getBlogsWritten();
              for(Blog blog1:blogList)
              {
