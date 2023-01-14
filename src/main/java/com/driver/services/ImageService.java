@@ -29,10 +29,10 @@ public class ImageService {
         List<Image> imageList = blog.getImageList();
         imageList.add(image);
         blog.setImageList(imageList);
-
+        blogRepository.save(blog);
         //  set user of blog if below doesnot work
 
-        blogRepository.save(blog);
+
         return image;
 
     }
@@ -71,20 +71,52 @@ public class ImageService {
         //In case the image is null, return 0
         int count =0;
         if(image == null)
-            return count;
+            return 0;
        // image dimensions
 
         String imageDimension = image.getDimensions();
-        String dim[] = imageDimension.split("X");
-       int li = Integer.parseInt(dim[0]);
-       int bi =Integer.parseInt(dim[1]);
+        int i =0;
+        String s="";
+        while(i<imageDimension.length()&& imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
+        {
+            s=s+imageDimension.charAt(i);
+            i++;
+        }
+        i++;
+        String s1="";
+        while(i< imageDimension.length() && imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
+        {
+            s1=s1+imageDimension.charAt(i);
+            i++;
+        }
+        int imagesize = Integer.parseInt(s)*Integer.parseInt(s1);
+        i=0;
+        s="";
+        s1="";
+        while(i<screenDimensions.length()&& screenDimensions.charAt(i)>='0' && screenDimensions.charAt(i)<='9')
+        {
+            s=s+screenDimensions.charAt(i);
+            i++;
+        }
+        i++;
 
+        while(i< screenDimensions.length() && screenDimensions.charAt(i)>='0' && screenDimensions.charAt(i)<='9')
+        {
+            s1=s1+screenDimensions.charAt(i);
+            i++;
+        }
+        int screensize=Integer.parseInt(s)*Integer.parseInt(s1);
+       // String dim[] = imageDimension.split("X");
+      // int li = Integer.parseInt(dim[0]);
+      // int bi =Integer.parseInt(dim[1]);
+       // while(imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
        // screen dimensions
-        String dim1[] = screenDimensions.split("X");
-        int ls = Integer.parseInt(dim1[0]);
-        int bs =Integer.parseInt(dim1[1]);
+//        String dim1[] = screenDimensions.split("X");
+//        int ls = Integer.parseInt(dim1[0]);
+//        int bs =Integer.parseInt(dim1[1]);
 
-        count = (ls*bs)/(li*bi);
+       // count = (ls*bs)/(li*bi);
+        count = screensize/imagesize;
         return count;
 
     }

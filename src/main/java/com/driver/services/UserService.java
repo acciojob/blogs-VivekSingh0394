@@ -24,12 +24,12 @@ public class UserService {
     public void deleteUser(int userId){
         User user = userRepository3.findById(userId).get();
         // new code after deleteuser failder till 32
-       List<Blog>blogList = user.getBlogList();
-        for(Blog blog:blogList)
-        {
-            int id = blog.getId();
-            blogService3.deleteBlog(id);
-        }
+//       List<Blog>blogList = user.getBlogList();
+//        for(Blog blog:blogList)
+//        {
+//            int id = blog.getId();
+//            blogService3.deleteBlog(id);
+//        }
         userRepository3.delete(user);
 
 
