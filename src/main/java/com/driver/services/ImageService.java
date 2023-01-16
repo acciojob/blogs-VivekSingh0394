@@ -25,13 +25,14 @@ public class ImageService {
 
         image.setBlog(blog);
 
-
+        if(image == null)return image;
         // now set this image in blog
         List<Image> imageList=new ArrayList<>();
         imageList = blog.getImageList();
         imageList.add(image);
         blog.setImageList(imageList);
         blogRepository.save(blog);
+
         return image;
 
     }
