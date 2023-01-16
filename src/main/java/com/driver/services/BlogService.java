@@ -71,13 +71,11 @@ public class BlogService {
 
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
-        Image image = new Image();
-        image.setDescription(description);
-        image.setDimensions(dimensions);
 
         //get the blog and update it since 1 blog has many images
 
         Blog blog = blogRepository1.findById(blogId).get();
+        Image image = imageService1.createAndReturn(blog,description,dimensions);
         image.setBlog(blog);
         List<Image> currentListOfImages=new ArrayList<>();
         currentListOfImages = blog.getImageList();
