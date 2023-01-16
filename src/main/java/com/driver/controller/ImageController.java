@@ -19,8 +19,8 @@ public class ImageController {
                                                  @RequestParam String description,
                                                  @RequestParam String dimensions) {
 
-        Image image = null;
-       image=imageService.createAndReturn(blog,description,dimensions);
+       // Image image = null;
+       Image image=imageService.createAndReturn(blog,description,dimensions);
         return new ResponseEntity<>(image, HttpStatus.CREATED);
     }
 

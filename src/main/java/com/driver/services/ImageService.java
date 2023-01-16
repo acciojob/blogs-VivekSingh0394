@@ -21,19 +21,20 @@ public class ImageService {
     public Image createAndReturn(Blog blog, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
 
-        Image image = new Image(description,dimensions);
+      Image image = new Image(description, dimensions);
 
-        image.setBlog(blog);
+      image.setBlog(blog);
 
-        if(image == null)return image;
-        // now set this image in blog
-        List<Image> imageList=new ArrayList<>();
-        imageList = blog.getImageList();
-        imageList.add(image);
-        blog.setImageList(imageList);
-        blogRepository.save(blog);
 
-        return image;
+      // now set this image in blog
+      List<Image> imageList = new ArrayList<>();
+      imageList = blog.getImageList();
+      imageList.add(image);
+      blog.setImageList(imageList);
+      blogRepository.save(blog);
+
+      return image;
+
 
     }
 
