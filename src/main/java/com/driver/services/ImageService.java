@@ -77,49 +77,23 @@ public class ImageService {
        // image dimensions
 
         String imageDimension = image.getDimensions();
-        int i =0;
-        String s="";
-        while(i<imageDimension.length()&& imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
-        {
-            s=s+imageDimension.charAt(i);
-            i++;
-        }
-        i++;
-        String s1="";
-        while(i< imageDimension.length() && imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
-        {
-            s1=s1+imageDimension.charAt(i);
-            i++;
-        }
-       // int imagesize = Integer.parseInt(s)*Integer.parseInt(s1);
-        i=0;
-        String s2="";
-        String s3="";
-        while(i<screenDimensions.length()&& screenDimensions.charAt(i)>='0' && screenDimensions.charAt(i)<='9')
-        {
-            s2=s2+screenDimensions.charAt(i);
-            i++;
-        }
-        i++;
 
-        while(i< screenDimensions.length() && screenDimensions.charAt(i)>='0' && screenDimensions.charAt(i)<='9')
-        {
-            s3=s3+screenDimensions.charAt(i);
-            i++;
-        }
-       // int screensize=Integer.parseInt(s)*Integer.parseInt(s1);
-       // String dim[] = imageDimension.split("X");
-      // int li = Integer.parseInt(dim[0]);
-      // int bi =Integer.parseInt(dim[1]);
-       // while(imageDimension.charAt(i)>='0' && imageDimension.charAt(i)<='9')
-       // screen dimensions
-//        String dim1[] = screenDimensions.split("X");
-//        int ls = Integer.parseInt(dim1[0]);
-//        int bs =Integer.parseInt(dim1[1]);
 
-       // count = (ls*bs)/(li*bi);
 
-        count = (Integer.parseInt(s)/Integer.parseInt(s1))*  (Integer.parseInt(s2)/Integer.parseInt(s3));
+        String s[] = imageDimension.split("X");
+
+
+            int il= Integer.parseInt(s[0]);
+            int ib = Integer.parseInt(s[1]);
+
+
+        String dim1[] = screenDimensions.split("X");
+        int ls = Integer.parseInt(dim1[0]);
+        int bs =Integer.parseInt(dim1[1]);
+
+
+        
+        count = (ls/il) *(bs/ib);
         return count;
 
     }
