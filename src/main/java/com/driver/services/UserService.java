@@ -38,7 +38,8 @@ public class UserService {
 
     public void updateUser(User user){
 
-        userRepository3.save(user);
+        userRepository3.save(user);// this will simply update the row overriding the previous data also id will be updated
+        // since we are sending a whole new object it will replace the previous one
     }
 
     public User findUserByUsername(String username){

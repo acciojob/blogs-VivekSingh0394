@@ -42,6 +42,9 @@ public class BlogService {
         blog.setUser(user);
         blog.setTitle(title);
         blog.setContent(content);
+        // for current time
+        blog.setPubDate(new Date());
+
         List<Blog> currentListOfBlogs = new ArrayList<>();
         currentListOfBlogs = user.getBlogList();
         currentListOfBlogs.add(blog);
