@@ -28,8 +28,10 @@ public class ImageService {
 
       // now set this image in blog
 
-        List<Image> imageList = new ArrayList<>();
-           imageList = blog.getImageList();
+        List<Image> imageList=blog.getImageList();
+        if(imageList==null){
+            imageList=new ArrayList<>();
+        }
       imageList.add(image);
       blog.setImageList(imageList);
       imageRepository2.save(image);
