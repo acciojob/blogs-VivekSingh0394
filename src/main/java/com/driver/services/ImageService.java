@@ -32,21 +32,6 @@ public class ImageService {
         imageList.add(image);
         blog.setImageList(imageList);
         blogRepository.save(blog);
-        //  set user of blog if below doesnot work
-      // new line 16-01-23
-//        List<User> userList = userRepository.findAll();
-//        for(User user:userList)
-//        {
-//            List<Blog> blogList = user.getBlogList();
-//            for(Blog blog1:blogList)
-//            {
-//                if(blog1.getId()==blog.getId())
-//                {
-//
-//                }
-//            }
-       // }
-
         return image;
 
     }
