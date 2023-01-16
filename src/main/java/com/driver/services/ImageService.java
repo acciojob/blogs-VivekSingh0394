@@ -7,6 +7,7 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,13 +28,25 @@ public class ImageService {
 
 
         // now set this image in blog
-
-        List<Image> imageList = blog.getImageList();
+        List<Image> imageList=new ArrayList<>();
+        imageList = blog.getImageList();
         imageList.add(image);
         blog.setImageList(imageList);
         blogRepository.save(blog);
         //  set user of blog if below doesnot work
-
+      // new line 16-01-23
+//        List<User> userList = userRepository.findAll();
+//        for(User user:userList)
+//        {
+//            List<Blog> blogList = user.getBlogList();
+//            for(Blog blog1:blogList)
+//            {
+//                if(blog1.getId()==blog.getId())
+//                {
+//
+//                }
+//            }
+       // }
 
         return image;
 

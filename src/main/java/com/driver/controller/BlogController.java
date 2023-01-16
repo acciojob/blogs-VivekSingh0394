@@ -44,7 +44,7 @@ BlogService blogService;
 
     @DeleteMapping("/{blogId}")
     public ResponseEntity<Void> deleteBlog(@PathVariable int blogId) {
-
+         blogService.deleteBlog(blogId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
