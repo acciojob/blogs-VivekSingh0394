@@ -29,12 +29,13 @@ public class ImageService {
       // now set this image in blog
 
         List<Image> imageList=blog.getImageList();
+        // to manage null pointer exception
         if(imageList==null){
             imageList=new ArrayList<>();
         }
       imageList.add(image);
       blog.setImageList(imageList);
-      imageRepository2.save(image);
+     // imageRepository2.save(image);
       blogRepository.save(blog);
 
       return image;
